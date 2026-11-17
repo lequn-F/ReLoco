@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="ReLoco: Unified Humanoid Locomotion and Fall Recovery via Behavior-Conditioned Motion Priors. Simulation-refined references train one proprioceptive actor for locomotion, get-up, and command resumption on Tiangong 3.0.">
+  <meta property="og:title" content="ReLoco: Unified Humanoid Locomotion and Fall Recovery via Behavior-Conditioned Motion Priors">
+  <meta property="og:description" content="Simulation-refined motion references and behavior-conditioned adversarial supervision train one actor to walk, recover from falls, and resume commanded motion.">
+  <meta property="og:image" content="static/images/overview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ReLoco: Unified Humanoid Locomotion and Fall Recovery via Behavior-Conditioned Motion Priors</title>
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+</head>
+
+<body>
+  <main>
+    <section class="project-hero">
+      <video class="project-hero-video" autoplay muted loop playsinline preload="metadata" aria-label="ReLoco humanoid locomotion and recovery teaser">
+        <source src="static/videos/cover.mp4" type="video/mp4">
+      </video>
+      <div class="project-hero-overlay"></div>
+      <div class="project-hero-content">
+        <h1>ReLoco</h1>
+        <p class="project-hero-title">Unified Humanoid Locomotion and Fall Recovery via Behavior-Conditioned Motion Priors</p>
+        <p class="project-hero-lede">One proprioceptive actor. Walk, run, recover, and resume commanded motion.</p>
+        <div class="hero-sequence" aria-label="Behavior sequence">
+          <span>Walk</span><i class="fas fa-arrow-right" aria-hidden="true"></i>
+          <span>Fall</span><i class="fas fa-arrow-right" aria-hidden="true"></i>
+          <span>Recover</span><i class="fas fa-arrow-right" aria-hidden="true"></i>
+          <span>Walk</span>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#paper" aria-label="Scroll to paper information">
+        <span>Explore the project</span><i class="fas fa-arrow-down" aria-hidden="true"></i>
+      </a>
+    </section>
+
+    <section class="section paper-header" id="paper">
+      <div class="container is-max-desktop">
+        <div class="authors">
+          <span>Lequn Fu<sup>1</sup></span>
+          <span>Yufeng Hu<sup>1</sup></span>
+          <span>Yijun Zhong<sup>1</sup></span>
+          <span>Xiao Li<sup>1</sup></span>
+          <span>Lingxiang Ji<sup>1</sup></span>
+          <span>Zhiyuan Xu<sup>2</sup></span>
+          <span>Jian Tang<sup>2</sup></span>
+          <span>Shiqi Li<sup>1,&dagger;</sup></span>
+        </div>
+        <p class="affiliations"><sup>1</sup>Huazhong University of Science and Technology &nbsp; <sup>2</sup>Beijing Innovation Center of Humanoid Robots<br><sup>&dagger;</sup>Corresponding author: <a href="mailto:sqli@hust.edu.cn">Shiqi Li</a></p>
+        <nav class="section-nav" aria-label="Explore this project">
+          <a href="#abstract">Abstract</a><a href="#method">Method</a><a href="#results">Real robot</a><a href="#interactive-demo">Interactive demo</a>
+        </nav>
+        <div class="project-stats" aria-label="Project facts">
+          <div><strong>1</strong><span>deployable policy</span></div>
+          <div><strong>64.5 kg</strong><span>robot weight</span></div>
+          <div><strong>1.70 m</strong><span>robot height</span></div>
+          <div><strong>zero-shot</strong><span>sim-to-real transfer</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="interactive-demo" style="background: #fafafa;">
+      <div class="container is-max-widescreen">
+        <div class="section-heading compact-heading">
+          <p class="section-kicker">Interactive demo</p>
+          <h2 class="title is-2">Take the policy for a walk</h2>
+          <p>Command the robot in MuJoCo, apply a disturbance, and let the same actor attempt recovery.</p>
+        </div>
+        <div class="has-text-centered" style="margin-bottom: 2rem;">
+          <a class="button is-link is-rounded is-medium" href="./demo.html" target="_blank" rel="noopener noreferrer" style="font-weight: 700; padding-left: 1.6rem; padding-right: 1.6rem; box-shadow: 0 8px 18px rgba(50, 115, 220, 0.22);">
+            Open the interactive demo page
+          </a>
+        </div>
+
+        <div style="max-width: 900px; margin: 0 auto 1.5rem; background: #fff6d8; border: 2px solid #f5c542; border-radius: 10px; padding: 1rem 1.35rem; box-shadow: 0 8px 24px rgba(10, 10, 10, 0.06); text-align: center;">
+          <p style="font-weight: 700; margin-bottom: 0.45rem;"><i class="fas fa-lightbulb"></i> Tips:</p>
+          <p style="margin-bottom: 0.35rem; line-height: 1.7;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 1.1rem; height: 1.1rem; margin-right: 0.35rem; background: #0b83d8; color: #fff; border: 1px solid #075f9c; font-size: 0.75rem; font-weight: 700;">1</span>Use <kbd>8</kbd>/<kbd>2</kbd> to change forward speed, and keep commands small to test stable standing.</p>
+          <p style="margin-bottom: 0.35rem; line-height: 1.7;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 1.1rem; height: 1.1rem; margin-right: 0.35rem; background: #0b83d8; color: #fff; border: 1px solid #075f9c; font-size: 0.75rem; font-weight: 700;">2</span>Use <kbd>4</kbd>/<kbd>6</kbd> for lateral velocity and <kbd>7</kbd>/<kbd>9</kbd> for yaw commands.</p>
+          <p style="line-height: 1.7;"><span style="display: inline-flex; align-items: center; justify-content: center; width: 1.1rem; height: 1.1rem; margin-right: 0.35rem; background: #0b83d8; color: #fff; border: 1px solid #075f9c; font-size: 0.75rem; font-weight: 700;">3</span>If the robot loses balance or falls, let the recovery policy try to get back up; press <kbd>0</kbd> or use Reset only when you want to restart.</p>
+        </div>
+
+        <div style="max-width: 1116px; margin: 0 auto; background: #fff; border-radius: 14px; padding: 1rem; box-shadow: 0 14px 34px rgba(10, 20, 35, 0.12); position: relative;">
+          <div style="position: absolute; left: 1rem; right: 1rem; top: 1rem; transform: translateY(0.35rem); z-index: 2; background: rgba(255, 243, 205, 0.94); border: 1px solid #f0cf4a; border-radius: 999px; padding: 0.65rem 1rem; text-align: center; font-weight: 700; color: #333;">
+            <i class="fas fa-lightbulb"></i> Try low-speed commands first, then increase forward speed after the robot is balanced.
+          </div>
+          <div style="position: relative; overflow: hidden; border-radius: 10px; background: #101827; aspect-ratio: 16 / 9; min-height: 520px;">
+            <iframe src="./static/demo/reloco_mujoco/dist/index.html" title="ReLoco interactive MuJoCo demo" loading="lazy" allowfullscreen style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;"></iframe>
+            <div style="position: absolute; right: 1rem; bottom: 1rem; width: min(340px, calc(100% - 2rem)); background: rgba(245, 248, 252, 0.92); border-radius: 10px; padding: 1rem 1.25rem; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18); color: #3a3a3a; backdrop-filter: blur(4px);">
+              <h3 class="title is-5" style="margin-bottom: 0.9rem;"><i class="fas fa-gamepad"></i> How to Play</h3>
+              <p style="font-weight: 700; margin-bottom: 0.5rem;">Controls</p>
+              <div style="display: grid; grid-template-columns: 5.5rem 1fr; gap: 0.55rem 1rem; align-items: center; font-size: 0.95rem;">
+                <kbd>8 / 2</kbd><span>Forward speed</span>
+                <kbd>4 / 6</kbd><span>Lateral speed</span>
+                <kbd>7 / 9</kbd><span>Yaw speed</span>
+                <kbd>0</kbd><span>Reset robot</span>
+                <kbd>P</kbd><span>Apply a push</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section abstract-band" id="abstract">
+      <div class="container is-max-desktop narrow-copy">
+        <p class="section-kicker">Abstract</p>
+        <h2 class="title is-2">Recover, then continue the task</h2>
+        <p class="abstract-copy">Humanoid robots must recover from falls and resume commanded motion to sustain locomotion. Learning this behavior in one policy requires references suited to the robot and supervision that accommodates both upright movement and ground-contact recovery. We present ReLoco, a training framework that combines simulation-refined motion references with behavior-conditioned adversarial motion priors. A tracking policy refines retargeted human motions into robot-executed examples. During policy learning, posture selects the expert pool and conditions a shared discriminator with two behavior-specific outputs. Task rewards and shared regularization support command tracking and recovery, while temporary assistance facilitates exploration. Deployment on the 64.5-kg Tiangong 3.0 humanoid demonstrates walking, running, get-up, and locomotion resumption after falls using one proprioceptive actor, without controller switching or on-robot policy fine-tuning.</p>
+        <div class="method-steps">
+          <div><span>01</span><h3>Refine the references</h3><p>An offline tracking policy executes retargeted human motions in simulation to build locomotion and get-up reference libraries.</p></div>
+          <div><span>02</span><h3>Condition the supervision</h3><p>Robot posture selects the expert pool and one of two outputs from a shared discriminator. Task rewards and shared penalties train the same actor.</p></div>
+          <div><span>03</span><h3>Deploy one actor</h3><p>The proprioceptive policy uses velocity commands to walk, run, get up, and resume locomotion. The discriminator and supervision router are used only in training.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section method-section" id="method">
+      <div class="container is-max-widescreen">
+        <div class="section-heading compact-heading">
+          <p class="section-kicker">Method</p>
+          <h2 class="title is-2">Better references, posture-appropriate supervision</h2>
+          <p>ReLoco (Recovery and Locomotion) refines retargeted human motions in simulation to form locomotion and get-up reference sets. Robot posture selects the reference set and conditions a shared discriminator with two behavior-specific outputs to train one actor.</p>
+        </div>
+        <figure class="paper-figure">
+          <a href="static/images/overview.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size framework overview">
+            <img src="static/images/overview.jpg" width="2373" height="1272" loading="lazy" alt="ReLoco framework: human motions are retargeted and refined by a tracking policy; posture-conditioned expert sampling, a shared two-output discriminator, and task rewards train one actor; that actor transfers to Tiangong for locomotion and recovery.">
+          </a>
+          <figcaption><strong>Overview of ReLoco</strong><span>Temporary recovery assistance is withdrawn during training. Deployment uses the actor alone, without the reference tracker, discriminator, assistance, or supervision router.</span></figcaption>
+        </figure>
+        <div class="motion-refinement-demo">
+          <div class="result-group-heading">
+            <div><h3>Reference-motion refinement</h3></div>
+            <p>Raw kinematically retargeted motion (left) and the robot-executed reference produced by a tracking policy in simulation (right). The refined trajectory is used as expert motion data for AMP training.</p>
+          </div>
+          <figure class="video-feature">
+            <video controls muted loop playsinline preload="metadata">
+              <source src="static/videos/motion-compared.mp4" type="video/mp4">
+            </video>
+            <figcaption><strong>Raw motion vs. simulation-refined motion</strong><span>Left: kinematically retargeted motion. Right: robot-executed reference motion.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section results-section" id="results">
+      <div class="container is-max-widescreen">
+        <div class="section-heading">
+          <p class="section-kicker">Real-world demonstrations</p>
+          <h2 class="title is-2">The same policy, across the whole cycle</h2>
+          <p>Direct transfer to the 1.70-m, 64.5-kg Tiangong 3.0 humanoid, without on-robot policy fine-tuning or a separate recovery controller.</p>
+        </div>
+
+        <div class="result-group">
+          <div class="result-group-heading">
+            <div><span class="result-index">01</span><h3>Fall, recover, and resume walking</h3></div>
+            <p>After a fall, the actor re-establishes support, gets upright, and resumes the commanded locomotion. Standing-kick trials also cover prone, supine, and side-lying recovery.</p>
+          </div>
+          <div class="video-grid two-up">
+            <figure class="video-card">
+              <video controls muted loop playsinline preload="metadata">
+                <source src="static/videos/recovery-front.mp4" type="video/mp4">
+              </video>
+              <figcaption><strong>Recovery after a front-direction kick</strong><span>Fall &rarr; recover &rarr; walk</span></figcaption>
+            </figure>
+            <figure class="video-card">
+              <video controls muted loop playsinline preload="metadata">
+                <source src="static/videos/recovery-back.mp4" type="video/mp4">
+              </video>
+              <figcaption><strong>Recovery after a rear-direction kick</strong><span>Fall &rarr; recover &rarr; walk</span></figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="result-group">
+          <div class="result-group-heading">
+            <div><span class="result-index">02</span><h3>Disturbance rejection without falling</h3></div>
+            <p>Representative kicks from the front and rear directions are rejected during walking, so the robot restores balance without a ground-level fall and continues the command.</p>
+          </div>
+          <div class="video-grid two-up">
+            <figure class="video-card">
+              <video controls muted loop playsinline preload="metadata">
+                <source src="static/videos/disturbance-front.mp4" type="video/mp4">
+              </video>
+              <figcaption><strong>Representative front-direction kick</strong><span>No-fall continuation</span></figcaption>
+            </figure>
+            <figure class="video-card">
+              <video controls muted loop playsinline preload="metadata">
+                <source src="static/videos/disturbance-back.mp4" type="video/mp4">
+              </video>
+              <figcaption><strong>Representative rear-direction kick</strong><span>No-fall continuation</span></figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="result-group">
+          <div class="result-group-heading">
+            <div><span class="result-index">03</span><h3>Locomotion across terrains</h3></div>
+            <p>The same actor generates standing, walking, and running. The outdoor sequence shows locomotion on brick pavement, stone-tiled pavement, grass, and grassy slopes.</p>
+          </div>
+          <figure class="video-feature">
+            <video controls muted loop playsinline preload="metadata">
+              <source src="static/videos/locomotion-terrains.mp4" type="video/mp4">
+            </video>
+            <figcaption><strong>Locomotion on varied surfaces</strong><span>Brick Pavement / Stone-Tiled Pavement / Grass / Downhill Grassy Slope / Uphill Grassy Slope</span></figcaption>
+          </figure>
+        </div>
+
+
+      </div>
+    </section>
+
+    <section class="section citation-section" id="BibTeX">
+      <div class="container is-max-desktop">
+        <p class="section-kicker">Citation</p>
+        <h2 class="title is-3">BibTeX</h2>
+        <pre><code>@misc{fu2026reloco,
+  title  = {ReLoco: Unified Humanoid Locomotion and Fall Recovery via Behavior-Conditioned Motion Priors},
+  author = {Fu, Lequn and Hu, Yufeng and Zhong, Yijun and Li, Xiao and Ji, Lingxiang and Xu, Zhiyuan and Tang, Jian and Li, Shiqi},
+  year   = {2026},
+  note   = {Manuscript}
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer project-footer">
+    <div class="container is-max-desktop">
+      <p>ReLoco project page. Built with the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener noreferrer">Academic Project Page Template</a> and inspired by the <a href="https://php-parkour.github.io/" target="_blank" rel="noopener noreferrer">PHP project page</a>.</p>
+    </div>
+  </footer>
+</body>
+
+</html>
