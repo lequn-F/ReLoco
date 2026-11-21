@@ -172,8 +172,11 @@ h3,
 
 .publication-links .button,
 .demo-layout .button {
-  border-radius: 4px;
   font-weight: 700;
+}
+
+.demo-layout .button {
+  border-radius: 4px;
 }
 
 .section-nav {
